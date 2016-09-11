@@ -30,8 +30,8 @@ public class BoardController {
     public ModelAndView boardIndex() {
         ModelAndView modelAndView = new ModelAndView("boardList");
 
-        //        List<User> users = userDAO.getUsers();
-        //        modelAndView.addObject("users", users);
+        List<User> users = userDAO.getUsers();
+        modelAndView.addObject("users", users);
 
         List<Article> articleList = articleService.getArticleList();
         modelAndView.addObject("articleList", articleList);
