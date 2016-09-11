@@ -8,7 +8,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 public class BoardWebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{RootContextConfig.class};
+        return new Class<?>[]{RootContextConfig.class, DatabaseConfig.class};
     }
 
     @Override
