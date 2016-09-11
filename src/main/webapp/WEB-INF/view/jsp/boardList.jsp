@@ -14,8 +14,8 @@
 <body>
 this is boradlist page.
 
-<c:forEach var="each" items="${users}">
-    <p>${each.name}</p>
+<c:forEach var="article" items="${articleList}">
+    <p>${article.title}</p>
 </c:forEach>
 
 </body>

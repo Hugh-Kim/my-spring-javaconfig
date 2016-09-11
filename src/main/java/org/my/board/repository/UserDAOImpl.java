@@ -19,10 +19,14 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public List<User> getUsers() {
-        CriteriaQuery<User> query = sessionFactory.getCriteriaBuilder().createQuery(User.class);
-        Root<User> fromUser = query.from(User.class);
+        Root<User> fromUser = sessionFactory.getCriteriaBuilder()
+                .createQuery(User.class)
+                .from(User.class);
 
-        CriteriaQuery<User> select = query.select(fromUser);
+        CriteriaQuery<User> select = sessionFactory.getCriteriaBuilder()
+                .createQuery(User.class)
+                .select(fromUser);
+
         List<User> resultList = sessionFactory.createEntityManager().createQuery(select).getResultList();
         return resultList;
     }
