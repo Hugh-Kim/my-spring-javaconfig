@@ -1,5 +1,6 @@
 package org.my.board;
 
+import lombok.extern.slf4j.Slf4j;
 import org.my.board.model.User;
 import org.my.board.repository.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/board")
+@Slf4j
 public class BoardController {
     @Autowired
     private UserDAO userDAO;
@@ -24,7 +26,7 @@ public class BoardController {
         ModelAndView modelAndView = new ModelAndView("boardList");
 
         List<User> users = userDAO.getUsers();
-        System.out.println(users);
+        modelAndView.addObject("users", users);
 
         return modelAndView;
     }
