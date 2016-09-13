@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface ArticleDAO {
 	List<Article> getArticleList();
+
+	Article getArticleDetail(int seqNo);
 }

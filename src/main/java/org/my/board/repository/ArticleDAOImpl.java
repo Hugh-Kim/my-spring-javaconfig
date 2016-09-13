@@ -31,4 +31,18 @@ public class ArticleDAOImpl implements ArticleDAO {
 
 		return entityManager.createQuery(select).getResultList();
 	}
+
+	@Override
+	public Article getArticleDetail(int seqNo) {
+		EntityManager entityManager = sessionFactory.createEntityManager();
+
+		CriteriaQuery<Article> query = entityManager.getCriteriaBuilder()
+				.createQuery(Article.class);
+
+		Root<Article> fromArticle = query.from(Article.class);
+		CriteriaQuery<Article> select = query.select(fromArticle)
+				.where(sessionFactory.getCriteriaBuilder().equal(fromArticle.get("seqNo"), seqNo));
+
+		return entityManager.createQuery(select).getSingleResult();
+	}
 }
