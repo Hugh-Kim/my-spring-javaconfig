@@ -24,4 +24,9 @@ public class ArticleServiceImpl implements ArticleService {
 	public Article getArticleDetail(int seqNo) {
 		return articleDAO.getArticleDetail(seqNo);
 	}
+
+	@Override
+	public void saveArticle(Article article) {
+		articleDAO.saveArticle(article);
+	}
 }

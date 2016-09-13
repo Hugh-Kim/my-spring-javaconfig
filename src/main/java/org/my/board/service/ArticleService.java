@@ -11,4 +11,6 @@ public interface ArticleService {
 	List<Article> getArticleList();
 
 	Article getArticleDetail(int seqNo);
+
+	void saveArticle(Article article);
 }

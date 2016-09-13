@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
@@ -44,5 +45,16 @@ public class ArticleDAOImpl implements ArticleDAO {
 				.where(sessionFactory.getCriteriaBuilder().equal(fromArticle.get("seqNo"), seqNo));
 
 		return entityManager.createQuery(select).getSingleResult();
+	}
+
+	@Override
+	public void saveArticle(Article article) {
+		EntityManager entityManager = sessionFactory.createEntityManager();
+
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		entityManager.persist(article);
+		transaction.commit();
+
 	}
 }

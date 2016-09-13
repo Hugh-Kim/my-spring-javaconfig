@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
@@ -42,16 +43,27 @@ public class BoardControllerTest {
         mockMvc.perform(get("/board/list"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(view().name("boardList"))
+                .andExpect(view().name("articleList"))
         ;
     }
 
     @Test
     public void get_contents_detail_with_seqNo() throws Exception {
-        mockMvc.perform(get("/board/contentDetail/1"))
+        mockMvc.perform(get("/board/articleDetail/1"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("articleDetail"))
+                ;
+    }
+
+    @Test
+    public void save_article() throws Exception {
+        mockMvc.perform(post("/board/save")
+                .param("seqNo", "13")
+                .param("title", "testArticle Title")
+                .param("content", "test article content"))
+                .andDo(print())
+                .andExpect(status().isFound())
                 ;
 
     }

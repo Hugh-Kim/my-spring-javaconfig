@@ -11,4 +11,6 @@ public interface ArticleDAO {
 	List<Article> getArticleList();
 
 	Article getArticleDetail(int seqNo);
+
+	void saveArticle(Article article);
 }
