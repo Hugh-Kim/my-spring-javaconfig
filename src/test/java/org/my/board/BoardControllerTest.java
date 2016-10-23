@@ -2,7 +2,10 @@ package org.my.board;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.test.context.ContextConfiguration;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.my.board.repository.UserDAO;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -16,11 +19,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 public class BoardControllerTest {
     private MockMvc mockMvc;
+
+    @Mock
+    private UserDAO userDAO;
+
+    @InjectMocks
     private BoardController boardController;
 
     @Before
     public void setUp() throws Exception {
-        this.boardController = new BoardController();
+        MockitoAnnotations.initMocks(this);
         mockMvc = MockMvcBuilders.standaloneSetup(boardController).build();
     }
 
