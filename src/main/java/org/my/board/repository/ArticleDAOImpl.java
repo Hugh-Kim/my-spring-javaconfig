@@ -16,45 +16,45 @@ import java.util.List;
  */
 @Repository
 public class ArticleDAOImpl implements ArticleDAO {
-	@Autowired
-	private SessionFactory sessionFactory;
+    @Autowired
+    private SessionFactory sessionFactory;
 
-	@Override
-	public List<Article> getArticleList() {
-		EntityManager entityManager = sessionFactory.createEntityManager();
+    @Override
+    public List<Article> getArticleList() {
+        EntityManager entityManager = sessionFactory.createEntityManager();
 
-		CriteriaQuery<Article> query = entityManager
-				.getCriteriaBuilder()
-				.createQuery(Article.class);
+        CriteriaQuery<Article> query = entityManager
+                .getCriteriaBuilder()
+                .createQuery(Article.class);
 
-		Root<Article> fromArticle = query.from(Article.class);
-		CriteriaQuery<Article> select = query.select(fromArticle);
+        Root<Article> fromArticle = query.from(Article.class);
+        CriteriaQuery<Article> select = query.select(fromArticle);
 
-		return entityManager.createQuery(select).getResultList();
-	}
+        return entityManager.createQuery(select).getResultList();
+    }
 
-	@Override
-	public Article getArticleDetail(int seqNo) {
-		EntityManager entityManager = sessionFactory.createEntityManager();
+    @Override
+    public Article getArticleDetail(int seqNo) {
+        EntityManager entityManager = sessionFactory.createEntityManager();
 
-		CriteriaQuery<Article> query = entityManager.getCriteriaBuilder()
-				.createQuery(Article.class);
+        CriteriaQuery<Article> query = entityManager.getCriteriaBuilder()
+                .createQuery(Article.class);
 
-		Root<Article> fromArticle = query.from(Article.class);
-		CriteriaQuery<Article> select = query.select(fromArticle)
-				.where(sessionFactory.getCriteriaBuilder().equal(fromArticle.get("seqNo"), seqNo));
+        Root<Article> fromArticle = query.from(Article.class);
+        CriteriaQuery<Article> select = query.select(fromArticle)
+                .where(sessionFactory.getCriteriaBuilder().equal(fromArticle.get("seqNo"), seqNo));
 
-		return entityManager.createQuery(select).getSingleResult();
-	}
+        return entityManager.createQuery(select).getSingleResult();
+    }
 
-	@Override
-	public void saveArticle(Article article) {
-		EntityManager entityManager = sessionFactory.createEntityManager();
+    @Override
+    public void saveArticle(Article article) {
+        EntityManager entityManager = sessionFactory.createEntityManager();
 
-		EntityTransaction transaction = entityManager.getTransaction();
-		transaction.begin();
-		entityManager.persist(article);
-		transaction.commit();
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+        entityManager.persist(article);
+        transaction.commit();
 
-	}
+    }
 }

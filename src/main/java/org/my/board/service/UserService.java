@@ -8,5 +8,5 @@ import java.util.List;
  * Created by thkim1 on 2016. 9. 12..
  */
 public interface UserService {
-	List<User> getUsers();
+    List<User> getUsers();
 }

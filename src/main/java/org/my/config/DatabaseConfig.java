@@ -1,7 +1,6 @@
 package org.my.config;
 
 import org.hibernate.SessionFactory;
-import org.my.board.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

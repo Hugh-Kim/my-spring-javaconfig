@@ -8,9 +8,9 @@ import java.util.List;
  * Created by thkim1 on 2016. 9. 12..
  */
 public interface ArticleService {
-	List<Article> getArticleList();
+    List<Article> getArticleList();
 
-	Article getArticleDetail(int seqNo);
+    Article getArticleDetail(int seqNo);
 
-	void saveArticle(Article article);
+    void saveArticle(Article article);
 }

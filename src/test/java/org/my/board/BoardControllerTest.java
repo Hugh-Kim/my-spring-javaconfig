@@ -53,7 +53,7 @@ public class BoardControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("articleDetail"))
-                ;
+        ;
     }
 
     @Test
@@ -64,7 +64,7 @@ public class BoardControllerTest {
                 .param("content", "test article content"))
                 .andDo(print())
                 .andExpect(status().isFound())
-                ;
+        ;
 
     }
 }

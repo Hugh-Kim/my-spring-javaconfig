@@ -12,21 +12,21 @@ import java.util.List;
  */
 @Service
 public class ArticleServiceImpl implements ArticleService {
-	@Autowired
-	private ArticleDAO articleDAO;
+    @Autowired
+    private ArticleDAO articleDAO;
 
-	@Override
-	public List<Article> getArticleList() {
-		return articleDAO.getArticleList();
-	}
+    @Override
+    public List<Article> getArticleList() {
+        return articleDAO.getArticleList();
+    }
 
-	@Override
-	public Article getArticleDetail(int seqNo) {
-		return articleDAO.getArticleDetail(seqNo);
-	}
+    @Override
+    public Article getArticleDetail(int seqNo) {
+        return articleDAO.getArticleDetail(seqNo);
+    }
 
-	@Override
-	public void saveArticle(Article article) {
-		articleDAO.saveArticle(article);
-	}
+    @Override
+    public void saveArticle(Article article) {
+        articleDAO.saveArticle(article);
+    }
 }

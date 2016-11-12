@@ -5,9 +5,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.script.ScriptTemplateConfig;
@@ -23,10 +22,16 @@ import org.springframework.web.servlet.view.script.ScriptTemplateViewResolver;
         useDefaultFilters = false
         , basePackages = {"org.my.board", "org.my.study"}
         , includeFilters = {@ComponentScan.Filter(value = Controller.class, type = FilterType.ANNOTATION)})
-public class ServletContextConfig extends WebMvcConfigurationSupport {
+public class ServletContextConfig extends WebMvcConfigurerAdapter {
     @Override
-    protected void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/bootstrap/css/**").addResourceLocations("/static/bootstrap-3.3.7-dist/css/");
+        registry.addResourceHandler("/bootstrap/js/**").addResourceLocations("/static/bootstrap-3.3.7-dist/js/");
     }
 
     @Bean

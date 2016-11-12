@@ -5,7 +5,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.my.board.BoardController;
+import org.my.board.model.Article;
 import org.my.board.repository.UserDAO;
+import org.my.board.service.ArticleService;
 import org.my.study.StudyViewController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -22,6 +24,7 @@ import org.springframework.web.servlet.view.script.ScriptTemplateConfig;
 import org.springframework.web.servlet.view.script.ScriptTemplateConfigurer;
 import org.springframework.web.servlet.view.script.ScriptTemplateViewResolver;
 
+import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -54,7 +57,7 @@ public class StudyViewControllerTest {
         mvc.perform(get("/test/alert"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                ;
+        ;
     }
 
     @Test
@@ -62,7 +65,7 @@ public class StudyViewControllerTest {
         mvc.perform(get("/board/list"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                ;
+        ;
 
     }
 }
@@ -100,6 +103,11 @@ class ScriptTemplateViewResolverConfig {
 
     @Bean
     public UserDAO userDAO() {
-        return Mockito.mock(UserDAO.class);
+        return mock(UserDAO.class);
+    }
+
+    @Bean
+    public ArticleService articleService() {
+        return mock(ArticleService.class);
     }
 }

@@ -16,10 +16,10 @@ import java.util.Date;
 @Getter
 @Setter
 public class Article {
-	@Id
-	private int seqNo;
-	private String title;
-	private String author;
-	private String content;
-	private Date createDate;
+    @Id
+    private int seqNo;
+    private String title;
+    private String author;
+    private String content;
+    private Date createDate;
 }
