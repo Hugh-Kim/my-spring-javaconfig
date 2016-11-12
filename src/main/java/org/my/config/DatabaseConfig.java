@@ -69,7 +69,8 @@ public class DatabaseConfig {
     @Bean
     public SessionFactory sessionFactory() {
         LocalSessionFactoryBuilder sessionFactoryBuilder = new LocalSessionFactoryBuilder(dataSource);
-        sessionFactoryBuilder.addAnnotatedClasses(User.class);
+//        sessionFactoryBuilder.addAnnotatedClasses(User.class);
+        sessionFactoryBuilder.scanPackages("org.my.board.model");
 
         return sessionFactoryBuilder.buildSessionFactory();
     }
